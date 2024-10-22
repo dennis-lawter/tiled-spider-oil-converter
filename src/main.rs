@@ -13,5 +13,10 @@ fn main() {
     // println!("{:#?}", map.layers().collect::<Vec<_>>());
 
     let soil = soil::SpiderOil::create_from_tiled_map(&map);
-    soil.print_s_expr();
+    let sexpr = soil.s_expr();
+
+    println!("{}", sexpr);
+
+    let sexprtest = lexpr::from_str(&sexpr);
+    println!("DEBUG:\n{:#?}", sexprtest);
 }

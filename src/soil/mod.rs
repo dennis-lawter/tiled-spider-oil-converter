@@ -47,47 +47,50 @@ impl SpiderOil {
         }
     }
 
-    pub fn print_s_expr(&self) {
-        for line in self.header.lines() {
-            println!(";{}", line);
-        }
-        println!("(");
-        {
-            println!(" :width {}", self.width);
-            println!(" :height {}", self.height);
+    pub fn s_expr(&self) -> String {
+        let mut s_expr = String::new();
 
-            println!(" :layers");
-            println!(" (");
+        for line in self.header.lines() {
+            s_expr.push_str(&format!(";{}\n", line));
+        }
+
+        s_expr.push_str("(\n");
+        {
+            s_expr.push_str(&format!(" :width {}\n", self.width));
+            s_expr.push_str(&format!(" :height {}\n", self.height));
+
+            s_expr.push_str(" :layers\n");
+            s_expr.push_str(" (\n");
             {
                 for layer in &self.layers {
-                    println!("  (");
-                    print!("   ");
+                    s_expr.push_str("  (\n   ");
                     for datum in &layer.data {
-                        print!("{} ", datum);
+                        s_expr.push_str(&format!("{} ", datum));
                     }
-                    println!("");
-                    println!("  )");
+                    s_expr.push_str("\n  )\n");
                 }
             }
-            println!(" )");
+            s_expr.push_str(" )\n");
 
-            println!(" :entities");
-            println!(" (");
+            s_expr.push_str(" :entities\n");
+            s_expr.push_str(" (\n");
             {
                 for entity in &self.entities {
-                    println!("  (");
-                    println!("   :x {}", entity.x);
-                    println!("   :y {}", entity.y);
-                    println!("   :name {}", entity.name);
-                    println!("   :class {}", entity.class);
+                    s_expr.push_str("  (\n");
+                    s_expr.push_str(&format!("   :x {}\n", entity.x));
+                    s_expr.push_str(&format!("   :y {}\n", entity.y));
+                    s_expr.push_str(&format!("   :name {}\n", entity.name));
+                    s_expr.push_str(&format!("   :class {}\n", entity.class));
                     for (prop_name, prop_value) in &entity.properties {
-                        println!("   :{} {}", prop_name, prop_value);
+                        s_expr.push_str(&format!("   :{} {}\n", prop_name, prop_value));
                     }
-                    println!("  )");
+                    s_expr.push_str("  )\n");
                 }
             }
-            println!(" )");
+            s_expr.push_str(" )\n");
         }
-        println!(")");
+        s_expr.push_str(")\n");
+
+        s_expr
     }
 }

@@ -6,6 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-# lexpr = "0.2.7"
+lexpr = "0.2.7"
 # thiserror = "1.0.64"
 tiled = "0.12.1"
