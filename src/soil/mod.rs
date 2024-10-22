@@ -1,24 +1,17 @@
 use entity::Entity;
 use layer::Layer;
+use tileset::TileSet;
 
 pub mod entity;
 pub mod layer;
+pub mod tileset;
 
-// pub struct Link {
-//     x: f32,
-//     y: f32,
-//     url: String,
-// }
-// pub struct Tileset {
-//     tiles: Vec<Tile>,
-// }
-// pub struct Tile {
-//     data: Vec<u8>, // assuming base64 encoding
-// }
 pub struct SpiderOil {
     header: String,
     width: u32,
     height: u32,
+
+    tilesets: Vec<TileSet>,
 
     layers: Vec<Layer>,
 
@@ -35,6 +28,8 @@ impl SpiderOil {
         };
         let width = map.width;
         let height = map.height;
+
+        let tilesets = TileSet::create_all_from_tiled_map(map);
         let layers = Layer::create_all_from_tiled_map(map);
         let entities = Entity::create_all_from_tiled_map(map);
 
@@ -42,6 +37,7 @@ impl SpiderOil {
             header,
             width,
             height,
+            tilesets,
             layers,
             entities,
         }
@@ -59,13 +55,34 @@ impl SpiderOil {
             s_expr.push_str(&format!(" :width {}\n", self.width));
             s_expr.push_str(&format!(" :height {}\n", self.height));
 
+            s_expr.push_str(" :tilesets\n");
+            s_expr.push_str(" (\n");
+            {
+                for tileset in &self.tilesets {
+                    s_expr.push_str("  (\n");
+                    s_expr.push_str(&format!("   :name {}\n", tileset.name));
+                    s_expr.push_str(&format!("   :url {}\n", tileset.url));
+                    s_expr.push_str("  )\n");
+                }
+            }
+            s_expr.push_str(" )\n");
+
             s_expr.push_str(" :layers\n");
             s_expr.push_str(" (\n");
             {
                 for layer in &self.layers {
                     s_expr.push_str("  (\n   ");
-                    for datum in &layer.data {
-                        s_expr.push_str(&format!("{} ", datum));
+                    for y in 0..self.height {
+                        if y != 0 {
+                            s_expr.push_str("\n   ");
+                        }
+                        for x in 0..self.width {
+                            let idx = (y * self.width + x) as usize;
+                            match &layer.tiles[idx] {
+                                Some(tile) => s_expr.push_str(&tile.to_string()),
+                                None => s_expr.push_str("()"),
+                            }
+                        }
                     }
                     s_expr.push_str("\n  )\n");
                 }

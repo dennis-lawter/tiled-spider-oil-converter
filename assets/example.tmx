@@ -15,14 +15,14 @@
 1610612738,1,1,1,1,1,1,1,1,1,2684354562,
 1610612738,1,1,1,1,1,1,1,1,1,2684354562,
 1610612738,1,1,1,1,1,1,1,1,1,2684354562,
-1610612738,1,1,1,1,1,1,1,1,1,2684354562,
+1610612738,1,1,1,1,1610612737,1,1,1,1,2684354562,
 1610612738,1,1,1,1,1,1,1,1,1,2684354562,
 1610612738,1,1,1,1,1,1,1,1,1,2684354562,
 2,2684354563,1,1,1,1,1,1,1,3,2,
 0,2684354564,2,2,2,2,2,2,2,4,0
 </data>
  </layer>
- <layer id="4" name="Shadows" width="11" height="10" opacity="0.5">
+ <layer id="4" name="Shadows" width="11" height="10">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,
 1610612754,0,0,0,0,0,0,0,0,0,3221225490,
@@ -37,7 +37,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="Objects">
-  <object id="1" name="Player" type="Player" gid="5" x="77.5" y="93.25" width="16" height="16"/>
+  <object id="1" name="Player" type="Player" gid="5" x="80" y="112" width="16" height="16"/>
   <object id="2" name="L:Q" type="Link" x="32" y="16" width="16" height="16">
    <properties>
     <property name="url" value="https://pub.colonq.computer/~llll/spider/test.sp"/>

@@ -12,12 +12,18 @@
             "scaleInEditor": 23
         },
         "example.tmx": {
-            "scale": 4,
-            "selectedLayer": 2,
+            "scale": 5.5,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 41.5,
-                "y": -4
+                "x": 85.45454545454545,
+                "y": 101.27272727272727
             }
+        },
+        "player.tsx": {
+            "scaleInEditor": 11
+        },
+        "shadow.tsx": {
+            "scaleInEditor": 1
         }
     },
     "last.imagePath": "/home/bytomancer/projects/rust/tiled-spider-oil-converter/assets",
@@ -26,8 +32,10 @@
     ],
     "project": "example.tiled-project",
     "recentFiles": [
-        "example.tmx",
-        "dungeon.tsx"
+        "shadow.tsx",
+        "player.tsx",
+        "dungeon.tsx",
+        "example.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
