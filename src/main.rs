@@ -1,17 +1,11 @@
-use std::fs;
+mod prelude;
+mod tmx;
 
-use serde::{Deserialize, Serialize};
-use serde_xml_rs::from_str;
-
-#[derive(Debug, Serialize, Deserialize)]
-struct Map {
-    version: String,
-}
+use tmx::Map;
 
 fn main() {
-    let tmx = fs::read_to_string("assets/example.tmx")
-    .expect("Failed to read");
+    let map = Map::load("assets/example.tmx")
+        .expect("Failed to read file");
 
-    let tiled: Map = from_str(&tmx).unwrap();
-    println!("{:?}", tiled);
+    println!("{:?}", map);
 }
