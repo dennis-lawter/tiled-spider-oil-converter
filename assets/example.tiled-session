@@ -12,11 +12,11 @@
             "scaleInEditor": 23
         },
         "example.tmx": {
-            "scale": 2,
-            "selectedLayer": 0,
+            "scale": 4,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 216,
-                "y": 476
+                "x": 41.5,
+                "y": -4
             }
         }
     },
@@ -26,8 +26,8 @@
     ],
     "project": "example.tiled-project",
     "recentFiles": [
-        "dungeon.tsx",
-        "example.tmx"
+        "example.tmx",
+        "dungeon.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

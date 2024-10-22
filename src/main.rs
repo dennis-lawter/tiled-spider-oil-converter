@@ -1,10 +1,17 @@
-mod prelude;
-mod tmx;
+use tiled::Loader;
 
-use tmx::Map;
+mod prelude;
+mod soil;
 
 fn main() {
-    let map = Map::load("assets/example.tmx").expect("Failed to read file");
+    let mut loader = Loader::new();
+    let map = loader
+        .load_tmx_map("assets/example.tmx")
+        .expect("Failed to read file");
 
-    println!("{:#?}", map);
+    assert_eq!(map.infinite(), false, "Infinite maps are not supported.");
+    // println!("{:#?}", map.layers().collect::<Vec<_>>());
+
+    let soil = soil::SpiderOil::create_from_tiled_map(&map);
+    soil.print_s_expr();
 }

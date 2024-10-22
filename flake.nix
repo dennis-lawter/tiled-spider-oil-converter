@@ -1,5 +1,5 @@
 {
-  description = "Build environment for pico-pet";
+  description = "Flake environment for tiled-spider-oil-converter";
   inputs =
   {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
